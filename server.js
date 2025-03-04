@@ -12,22 +12,8 @@ app.use(express.json());
 // Define the file where books will be stored
 const BOOKS_FILE = 'books.txt';
 
-/**
- * 📌 **POST /add-book**
- * Adds a new book to the `books.txt` file.
- *
- * Expected request body (JSON):
- * {
- *   "bookName": "Harry Potter",
- *   "isbn": "123456789",
- *   "author": "J.K. Rowling",
- *   "yearPublished": "1997"
- * }
- *
- * Response:
- * - `{ "success": true }` if the book is successfully saved
- * - `{ "success": false, "message": "Error message" }` if something goes wrong
- */
+
+// Adds a new book to the `books.txt` file.
 app.post('/add-book', (req, res) => {
     const { bookName, isbn, author, yearPublished } = req.body;
 
@@ -48,17 +34,8 @@ app.post('/add-book', (req, res) => {
     });
 });
 
-/**
- * 📌 **GET /find-by-isbn-author**
- * Retrieves a book using both ISBN and Author as search parameters.
- *
- * Example request:
- * `GET /find-by-isbn-author?isbn=123456789&author=J.K. Rowling`
- *
- * Response:
- * - `{ "success": true, "book": "Harry Potter,123456789,J.K. Rowling,1997" }` if found
- * - `{ "success": false, "message": "Book not found." }` if not found
- */
+
+// Retrieves a book using both ISBN and Author as search parameters.
 app.get('/find-by-isbn-author', (req, res) => {
     const { isbn, author } = req.query;
 
@@ -91,17 +68,9 @@ app.get('/find-by-isbn-author', (req, res) => {
     });
 });
 
-/**
- * 📌 **GET /find-by-author**
- * Retrieves all books written by a given author.
- *
- * Example request:
- * `GET /find-by-author?author=J.K. Rowling`
- *
- * Response:
- * - `{ "success": true, "books": ["Harry Potter,123456789,J.K. Rowling,1997", ...] }` if books are found
- * - `{ "success": false, "message": "No books found for this author." }` if no books match
- */
+
+
+// Retrieves all books written by a given author.
 app.get('/find-by-author', (req, res) => {
     const { author } = req.query;
 
@@ -134,10 +103,9 @@ app.get('/find-by-author', (req, res) => {
     });
 });
 
-/**
- * 📌 **Server Start**
- * Starts the Express server and listens on the defined port.
- */
+
+
+//Starts the Express server and listens on the defined port.
 app.listen(port, () => {
     console.log(`📚 Book API Server is running at http://localhost:${port}`);
 });
