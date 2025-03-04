@@ -55,3 +55,30 @@ app.get('/find-by-isbn-author', (req, res) => {
         }
     });
 });
+
+
+
+// GET route to find books by Author
+app.get('/find-by-author', (req, res) => {
+    const { author } = req.query;
+
+    if (!author) {
+        return res.json({ success: false, message: "Author is required." });
+    }
+
+    fs.readFile(BOOKS_FILE, 'utf8', (err, data) => {
+        if (err) return res.json({ success: false });
+
+        const books = data.split('\n').filter(line => line);
+        const foundBooks = books.filter(book => {
+            const [bookName, bookIsbn, bookAuthor, year] = book.split(',');
+            return bookAuthor === author;
+        });
+
+        if (foundBooks.length > 0) {
+            res.json({ success: true, books: foundBooks });
+        } else {
+            res.json({ success: false, message: "No books found for this author." });
+        }
+    });
+});
