@@ -30,3 +30,28 @@ app.post('/add-book', (req, res) => {
         res.json({ success: true });
     });
 });
+
+// GET route to find a book by ISBN and Author
+app.get('/find-by-isbn-author', (req, res) => {
+    const { isbn, author } = req.query;
+
+    if (!isbn || !author) {
+        return res.json({ success: false, message: "ISBN and Author are required." });
+    }
+
+    fs.readFile(BOOKS_FILE, 'utf8', (err, data) => {
+        if (err) return res.json({ success: false });
+
+        const books = data.split('\n').filter(line => line);
+        const foundBook = books.find(book => {
+            const [bookName, bookIsbn, bookAuthor, year] = book.split(',');
+            return bookIsbn === isbn && bookAuthor === author;
+        });
+
+        if (foundBook) {
+            res.json({ success: true, book: foundBook });
+        } else {
+            res.json({ success: false, message: "Book not found." });
+        }
+    });
+});
