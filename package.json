@@ -1,0 +1,23 @@
+{
+  "name": "exer-05-creating-web-servers-using-express-js-schilion",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CMSC-100-2S24-25/exer-05-creating-web-servers-using-express-js-Schilion.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CMSC-100-2S24-25/exer-05-creating-web-servers-using-express-js-Schilion/issues"
+  },
+  "homepage": "https://github.com/CMSC-100-2S24-25/exer-05-creating-web-servers-using-express-js-Schilion#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
